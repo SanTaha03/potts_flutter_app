@@ -149,23 +149,23 @@ class DashboardScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 16,
-                                backgroundColor: Color(0xFFEAF1E7),
-                                child: Icon(Icons.eco_rounded, color: Color(0xFF536A50), size: 20),
+                          CircleAvatar(
+                            radius: 16,
+                            backgroundColor: Color(0xFFEAF1E7),
+                            child: Icon(Icons.eco_rounded, color: Color(0xFF536A50), size: 20),
+                          ),
+                          SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              'Plantes consultées récemment ',
+                              overflow: TextOverflow.fade,
+                              softWrap: false,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF384A37),
                               ),
-                              SizedBox(width: 12),
-                              Text(
-                                'Plantes récemment consultées',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF384A37),
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
                           OutlinedButton(
                             onPressed: onSeeAllPressed,

@@ -47,9 +47,9 @@ class PlantDetailScreen extends StatelessWidget {
                                 top: 12,
                                 bottom: 12,
                                 child: Container(
-                                  width: 10,
+                                  width: 12,
                                   decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.lightBlue.withOpacity(0.3)),
+                                    border: Border.all(color: Colors.lightBlue.withAlpha(77)),
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   child: ClipRRect(
