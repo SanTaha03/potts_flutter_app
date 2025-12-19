@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutterapplication/features/plantes/presentation/widgets/health_chart.dart';
 
@@ -15,33 +16,29 @@ class PlantDetailScreen extends StatelessWidget {
             child: Column(
               children: [
                 // --- Section supérieure : Image et Santé ---
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Carte Image
-                    Expanded(
-                      flex: 4,
-                      child: AspectRatio(
-                        aspectRatio: 0.8,
+                IntrinsicHeight(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      // Carte Image
+                      Expanded(
+                        flex: 4,
                         child: Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(20),
+                             image: const DecorationImage(
+                              image: NetworkImage('assets/images/monsterra.png'), // Placeholder
+                              fit: BoxFit.contain,
+                            ),
                           ),
                           child: Stack(
                             children: [
-                              const Center(
-                                child: Icon(
-                                  Icons.local_florist_rounded,
-                                  size: 100,
-                                  color: Color(0xFF9AB291),
-                                ),
-                              ),
                               Positioned(
                                 top: 8,
                                 right: 8,
                                 child: IconButton(
-                                  icon: const Icon(Icons.favorite_border, color: Colors.grey),
+                                  icon: const Icon(Icons.favorite_border, color: Colors.white70),
                                   onPressed: () {},
                                 ),
                               ),
@@ -50,7 +47,7 @@ class PlantDetailScreen extends StatelessWidget {
                                 top: 12,
                                 bottom: 12,
                                 child: Container(
-                                  width: 20,
+                                  width: 10,
                                   decoration: BoxDecoration(
                                     border: Border.all(color: Colors.lightBlue.withOpacity(0.3)),
                                     borderRadius: BorderRadius.circular(12),
@@ -73,103 +70,105 @@ class PlantDetailScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 16),
-                    // Colonne de droite
-                    Expanded(
-                      flex: 5,
-                      child: Column(
-                        children: [
-                           // Carte Santé
-                          Container(
-                            padding: const EdgeInsets.all(16),
-                             decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text('Calathea', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF384A37))),
-                                const SizedBox(height: 4),
-                                Row(
-                                  children: [
-                                    const Text('Ma plante de bureau', style: TextStyle(color: Colors.grey)),
-                                    const SizedBox(width: 4),
-                                    const Icon(Icons.edit, size: 14, color: Colors.grey)
-                                  ],
-                                ),
-                                const SizedBox(height: 8),
-                                Chip(
-                                  label: const Text('Bureau 13L', style: TextStyle(fontSize: 12)),
-                                  avatar: const Icon(Icons.location_on_outlined, size: 14),
-                                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                                  backgroundColor: const Color(0xFFF5F5F3),
-                                ),
-                                const SizedBox(height: 16),
-                                const Text('Santé global', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF384A37))),
-                                const SizedBox(height: 8),
-                                const SizedBox(height: 80, child: HealthChart()),
-                                 const Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Text('LUN', style: TextStyle(color: Colors.grey, fontSize: 10)),
-                                    Text('MAR', style: TextStyle(color: Colors.grey, fontSize: 10)),
-                                    Text('MER', style: TextStyle(color: Colors.grey, fontSize: 10)),
-                                    Text('JEU', style: TextStyle(color: Colors.grey, fontSize: 10)),
-                                    Text('VEN', style: TextStyle(color: Colors.grey, fontSize: 10)),
-                                    Text('SAM', style: TextStyle(color: Colors.grey, fontSize: 10)),
-                                    Text('DIM', style: TextStyle(color: Colors.grey, fontSize: 10)),
-                                  ],
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
+                      const SizedBox(width: 16),
+                      // Colonne de droite
+                      Expanded(
+                        flex: 5,
+                        child: Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text('Calathea', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF384A37))),
+                              const SizedBox(height: 4),
+                              const Row(
+                                children: [
+                                  Text('Ma plante de bureau', style: TextStyle(color: Colors.grey)),
+                                  SizedBox(width: 4),
+                                  Icon(Icons.edit, size: 14, color: Colors.grey)
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              Chip(
+                                label: const Text('Bureau 13L', style: TextStyle(fontSize: 12)),
+                                avatar: const Icon(Icons.location_on_outlined, size: 14),
+                                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                                backgroundColor: const Color(0xFFF5F5F3),
+                              ),
+                              const Spacer(),
+                              const Text('Santé global', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF384A37))),
+                              const SizedBox(height: 8),
+                              const SizedBox(height: 80, child: HealthChart()),
+                              const Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text('LUN', style: TextStyle(color: Colors.grey, fontSize: 10)),
+                                  Text('MAR', style: TextStyle(color: Colors.grey, fontSize: 10)),
+                                  Text('MER', style: TextStyle(color: Colors.grey, fontSize: 10)),
+                                  Text('JEU', style: TextStyle(color: Colors.grey, fontSize: 10)),
+                                  Text('VEN', style: TextStyle(color: Colors.grey, fontSize: 10)),
+                                  Text('SAM', style: TextStyle(color: Colors.grey, fontSize: 10)),
+                                  Text('DIM', style: TextStyle(color: Colors.grey, fontSize: 10)),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 16),
-                 // --- Section Cartes d'info ---
+                // --- Section Cartes d'info ---
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildInfoCard(
-                      icon: Icons.wb_sunny_outlined,
-                      iconBgColor: const Color(0xFFF8EFE7),
-                      iconColor: const Color(0xFFD49A6A),
-                      value: 'Sud/Est',
-                      label: 'Exposition',
-                      status: 'Adéquate',
-                      statusBgColor: const Color(0xFFEAF1E7),
-                      statusTextColor: const Color(0xFF384A37),
+                    Expanded(
+                      child: _buildInfoCard(
+                        icon: Icons.wb_sunny_outlined,
+                        iconBgColor: const Color(0xFFF8EFE7),
+                        iconColor: const Color(0xFFD49A6A),
+                        value: 'Sud',
+                        label: 'Exposition',
+                        status: 'Adéquate',
+                        statusBgColor: const Color(0xFFEAF1E7),
+                        statusTextColor: const Color(0xFF384A37),
+                      ),
                     ),
-                    _buildInfoCard(
-                      icon: Icons.water_drop_outlined,
-                      iconBgColor: const Color(0xFFE2EFFD),
-                      iconColor: const Color(0xFF3B82F6),
-                      value: '12%',
-                      label: 'Humidité',
-                      status: 'Insuffisante',
-                      statusBgColor: const Color(0xFFF8EFE7),
-                      statusTextColor: const Color(0xFFD49A6A),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: _buildInfoCard(
+                        icon: Icons.water_drop_outlined,
+                        iconBgColor: const Color(0xFFE2EFFD),
+                        iconColor: const Color(0xFF3B82F6),
+                        value: '12%',
+                        label: 'Humidité',
+                        status: 'Insuffisante',
+                        statusBgColor: const Color(0xFFF8EFE7),
+                        statusTextColor: const Color(0xFFD49A6A),
+                      ),
                     ),
-                    _buildInfoCard(
-                      icon: Icons.thermostat_outlined,
-                      iconBgColor: const Color(0xFFEAF1E7),
-                      iconColor: const Color(0xFF536A50),
-                      value: '21°',
-                      label: 'Température',
-                      status: 'Adéquate',
-                      statusBgColor: const Color(0xFFEAF1E7),
-                      statusTextColor: const Color(0xFF384A37),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: _buildInfoCard(
+                        icon: Icons.thermostat_outlined,
+                        iconBgColor: const Color(0xFFEAF1E7),
+                        iconColor: const Color(0xFF536A50),
+                        value: '21°',
+                        label: 'Température',
+                        status: 'Adéquate',
+                        statusBgColor: const Color(0xFFEAF1E7),
+                        statusTextColor: const Color(0xFF384A37),
+                      ),
                     ),
                   ],
                 ),
 
                 const SizedBox(height: 16),
-                 // --- Section Descriptif ---
+                // --- Section Descriptif ---
                 Container(
                   padding: const EdgeInsets.all(16.0),
                   decoration: BoxDecoration(
@@ -177,7 +176,7 @@ class PlantDetailScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(
-                     crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Row(
                         children: [
@@ -200,7 +199,7 @@ class PlantDetailScreen extends StatelessWidget {
                       const SizedBox(height: 16),
                       Text(
                         'Le Monstera fait partie de la famille des Aracées, tout comme l\'Anthurium et le Philodendron.\n\nSes tiges sont épaisses et ses feuilles, souvent vertes, sont grandes. Avec suffisamment de lumière et d\'humidité, les feuilles se développent, formant des incisions profondes et/ou des trous. Les feuilles matures peuvent atteindre un diamètre d\'un mètre !\n\nEn raison de la taille, des incisions et des trous des feuilles, cette plante a été nommée « Monstrum », ce qui signifie « monstrueux » en latin.',
-                         style: TextStyle(color: Colors.grey[700], height: 1.5, fontSize: 13),
+                        style: TextStyle(color: Colors.grey[700], height: 1.5, fontSize: 13),
                       )
                     ],
                   ),
@@ -227,7 +226,7 @@ class PlantDetailScreen extends StatelessWidget {
                               ),
                               SizedBox(width: 12),
                               Text(
-                                'Plantes du même étage',
+                                'Dans le même étage', // Changed Text
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -270,7 +269,7 @@ class PlantDetailScreen extends StatelessWidget {
                         waterAmount: 0.4,
                       ),
                       const SizedBox(height: 12),
-                       _buildPlantRow(
+                      _buildPlantRow(
                         icon: Icons.local_florist_outlined,
                         color: const Color(0xFFD49A6A),
                         name: 'Monstera',
@@ -299,7 +298,6 @@ class PlantDetailScreen extends StatelessWidget {
     required Color statusTextColor,
   }) {
     return Container(
-      width: 110,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -311,26 +309,32 @@ class PlantDetailScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(value, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF384A37))),
+              Text(value, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Color(0xFF384A37))),
               CircleAvatar(backgroundColor: iconBgColor, radius: 14, child: Icon(icon, color: iconColor, size: 18)),
             ],
           ),
           const SizedBox(height: 4),
           Text(label, style: const TextStyle(color: Colors.grey, fontSize: 12)),
           const SizedBox(height: 8),
-          Chip(
-            label: Text(status, style: TextStyle(fontSize: 11, color: statusTextColor, fontWeight: FontWeight.w500)),
-            backgroundColor: statusBgColor,
-            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 0),
-            side: BorderSide.none,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(vertical: 6),
+            decoration: BoxDecoration(
+              color: statusBgColor,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Text(
+              status,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 12, color: statusTextColor, fontWeight: FontWeight.w600),
+            ),
           ),
         ],
       ),
     );
   }
 
-   Widget _buildPlantRow({
+  Widget _buildPlantRow({
     required IconData icon,
     required Color color,
     required String name,

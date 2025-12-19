@@ -179,8 +179,8 @@ class _PlantesScreenState extends State<PlantesScreen> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
           image: const DecorationImage(
-            image: NetworkImage('https://via.placeholder.com/150'), // Placeholder image
-            fit: BoxFit.cover,
+            image: NetworkImage('assets/images/monsterra.png'),
+            fit: BoxFit.contain,
           ),
         ),
         child: Column(

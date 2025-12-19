@@ -36,31 +36,38 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _screens = <Widget>[
-    DashboardScreen(),
-    PlantesScreen(),
-    ProblemePlanteScreen(),
-    AccountScreen(),
-  ];
+  void _onTabChange(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+
+    // La liste des écrans est maintenant construite ici pour passer la fonction de rappel
+    final List<Widget> screens = [
+      DashboardScreen(onSeeAllPressed: () => _onTabChange(1)), // Navigue vers l'index 1 (Plantes)
+      const PlantesScreen(),
+      const ProblemePlanteScreen(),
+      const AccountScreen(),
+    ];
+
     return Scaffold(
-      body: IndexedStack( // Use IndexedStack to preserve state of each tab
+      body: IndexedStack(
         index: _selectedIndex,
-        children: _screens,
+        children: screens,
       ),
       bottomNavigationBar: Container(
-        // Use the scaffold background color for the area behind the floating nav bar
         color: Theme.of(context).scaffoldBackgroundColor,
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 24), // Add safe area padding at the bottom
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
         child: Container(
           decoration: BoxDecoration(
-            color: const Color(0xFFEAF1E7), // Light green background from image
+            color: const Color(0xFFEAF1E7),
             borderRadius: BorderRadius.circular(25),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: Colors.black.withOpacity(0.3),‡
                 spreadRadius: 1,
                 blurRadius: 15,
                 offset: const Offset(0, 5),
@@ -71,8 +78,8 @@ class _MainScreenState extends State<MainScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
             child: GNav(
               backgroundColor: Colors.transparent,
-              color: const Color(0xFF536A50), // Unselected icon/text color
-              activeColor: const Color(0xFF384A37), // Selected icon/text color
+              color: const Color(0xFF536A50),
+              activeColor: const Color(0xFF384A37),
               tabBackgroundColor: Colors.white,
               haptic: true,
               gap: 8,
@@ -89,7 +96,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 GButton(
                   icon: Icons.chat_bubble_outline_rounded,
-                  text: 'Problèmes', // Shortened Text
+                  text: 'Problèmes',
                 ),
                 GButton(
                   icon: Icons.person_outline_rounded,
@@ -97,11 +104,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ],
               selectedIndex: _selectedIndex,
-              onTabChange: (index) {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              },
+              onTabChange: _onTabChange, // Utilise la nouvelle fonction
             ),
           ),
         ),

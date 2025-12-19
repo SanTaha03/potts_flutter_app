@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutterapplication/features/dashboard/presentation/widgets/plant_health_gauge.dart';
 
 class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
+  final VoidCallback onSeeAllPressed;
+  const DashboardScreen({super.key, required this.onSeeAllPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +71,7 @@ class DashboardScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           // Carte de température
-                          _buildInfoCard(Icons.thermostat_outlined, const Color(0xFFEAF1E7), const Color(0xFF536A50), 'Température moyenne', '19°'),
+                          _buildInfoCard(Icons.thermostat_outlined, const Color(0xFFEAF1E7), const Color(0xFF536A50), 'Temp. moyenne', '19°'),
                           const SizedBox(height: 16),
                           // Carte d'humidité
                           _buildInfoCard(Icons.water_drop_outlined, const Color(0xFFE2EFFD), const Color(0xFF3B82F6), 'Humidité moyenne', '63%'),
@@ -167,7 +168,7 @@ class DashboardScreen extends StatelessWidget {
                             ],
                           ),
                           OutlinedButton(
-                            onPressed: () {},
+                            onPressed: onSeeAllPressed,
                             style: OutlinedButton.styleFrom(
                               side: const BorderSide(color: Color(0xFFE6E8E2)),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
